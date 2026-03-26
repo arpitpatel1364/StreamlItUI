@@ -28,8 +28,6 @@ for key, default in [
     if key not in st.session_state:
         st.session_state[key] = default
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
-
 def parse_snippet(snippet: str):
     api_key   = re.search(r'api_key\s*=\s*["\']([^"\']+)["\']', snippet)
     workspace = re.search(r'\.workspace\(["\']([^"\']+)["\']\)', snippet)
