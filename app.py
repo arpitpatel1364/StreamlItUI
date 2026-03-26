@@ -121,15 +121,15 @@ def run_training_thread(cfg: dict, log_q: queue.Queue, proc_holder: list):
 
         if proc.returncode == 0:
             w = find_best_weights()
-            log_q.put("✅ Training complete!")
+            log_q.put("Training complete!")
             if w:
-                log_q.put(f"🚀 Best weights: {w}")
+                log_q.put(f"Best weights: {w}")
                 log_q.put(f"__WEIGHTS__{w}")   # structured sentinel for weights path
         else:
-            log_q.put(f"❌ Process exited with code {proc.returncode}")
+            log_q.put(f"! Process exited with code {proc.returncode}")
 
     except Exception as exc:
-        log_q.put(f"❌ Exception: {exc}")
+        log_q.put(f"! Exception: {exc}")
     finally:
         proc_holder[0] = None
         log_q.put("__DONE__")
